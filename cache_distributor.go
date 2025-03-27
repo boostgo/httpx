@@ -7,17 +7,17 @@ import (
 	"time"
 )
 
-type HttpCacheSetter interface {
+type CacheSetter interface {
 	Set(ctx context.Context, request *http.Request, responseBody []byte, ttl time.Duration) error
 }
 
-type HttpCacheGetter interface {
+type CacheGetter interface {
 	Get(ctx context.Context, request *http.Request) ([]byte, bool, error)
 }
 
-type HttpCacheDistributor interface {
-	HttpCacheSetter
-	HttpCacheGetter
+type CacheDistributor interface {
+	CacheSetter
+	CacheGetter
 }
 
 type cacheResponseWriter struct {
