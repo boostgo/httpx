@@ -15,7 +15,7 @@ type FailureResponse struct {
 	Context map[string]any `json:"context,omitempty"`
 }
 
-func NewFailure(err error) FailureResponse {
+func NewFailureResponse(err error) FailureResponse {
 	const defaultErrorType = "ERROR"
 
 	response := FailureResponse{
@@ -50,12 +50,18 @@ type CreatedResponse struct {
 	ID any `json:"id"`
 }
 
+func NewCreatedResponse(id any) CreatedResponse {
+	return CreatedResponse{
+		ID: id,
+	}
+}
+
 type SuccessResponse struct {
 	Status string `json:"status"`
 	Body   any    `json:"body"`
 }
 
-func NewSuccess(body any) SuccessResponse {
+func NewSuccessResponse(body any) SuccessResponse {
 	return SuccessResponse{
 		Status: statusSuccess,
 		Body:   body,

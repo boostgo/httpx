@@ -44,15 +44,15 @@ func NewParam(value string) Param {
 	}
 }
 
-func Empty() Param {
+func EmptyParam() Param {
 	return NewParam("")
 }
 
-func IsEmpty(param Param) bool {
+func IsEmptyParam(param Param) bool {
 	return param.IsEmpty()
 }
 
-func Equals(p1, p2 Param) bool {
+func ParamEquals(p1, p2 Param) bool {
 	return p1.value == p2.value
 }
 
@@ -61,7 +61,7 @@ func (param Param) IsEmpty() bool {
 }
 
 func (param Param) Equals(compare Param) bool {
-	return Equals(param, compare)
+	return ParamEquals(param, compare)
 }
 
 func (param Param) String(defaultValue ...string) string {
