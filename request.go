@@ -15,12 +15,25 @@ func RequestHeaders(request *http.Request) map[string]any {
 	return headers
 }
 
+func RequestHeader(request *http.Request, key string) Param {
+	return NewParam(request.Header.Get(key))
+}
+
 func RequestCookies(request *http.Request) map[string]any {
 	cookies := make(map[string]any)
 	for _, cookie := range request.Cookies() {
 		cookies[cookie.Name] = cookie.Value
 	}
 	return cookies
+}
+
+func RequestCookie(request *http.Request, name string) Param {
+	cookie, err := request.Cookie(name)
+	if err != nil {
+		return EmptyParam()
+	}
+
+	return NewParam(cookie.Value)
 }
 
 func NewCookie(key, value string, ttl ...time.Duration) *http.Cookie {
